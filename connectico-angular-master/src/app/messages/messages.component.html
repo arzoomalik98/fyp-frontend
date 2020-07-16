@@ -1,0 +1,120 @@
+<app-navbar></app-navbar>
+<div class="row">
+  <div class="col-md-1"></div>
+  <div
+    class="col-md-3"
+    style="
+      background-color: #def2f1;
+      min-height: 91vh;
+      max-height: 91vh;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding: 0px;
+    "
+  >
+    <div class="col-md-12 header">
+      <h3 style="font-family: sans-serif; padding: 5px; margin: auto;">
+        Messages
+      </h3>
+    </div>
+    <!-- <h3 style="padding: 10px; font-family: sans-serif;">Messages</h3> -->
+    <div class="row" style="margin-top: 30px; margin-bottom: 30px;">
+      <div class="col-md-1"></div>
+      <div class="col-md-10">
+        <div
+          class="row message-tile"
+          [routerLink]="['new']"
+          [routerLinkActive]="'active'"
+        >
+          <div class="col-md-2">
+            <div class="avatar-div">
+              <img
+                id="avatar-img"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTmQOnEWuJfyeRVDR-A9DT3TJPTrfPWBXeO4z995Y-DtEEvtQk5&usqp=CAU"
+                alt="avatar mx-auto white"
+                class="img-fluid"
+              />
+            </div>
+          </div>
+          <div
+            class="col-md-10 title"
+            style="
+              margin: auto;
+              text-align: left;
+              padding-top: 2px;
+              padding-left: 35px;
+            "
+          >
+            New message
+          </div>
+        </div>
+
+        <div
+          class="row message-tile"
+          *ngFor="let conversation of conversations"
+          id="{{ 'c' + conversation.c_id }}"
+          [routerLink]="[
+            '/messages',
+            conversation.otherUser.username + '-' + conversation.c_id
+          ]"
+          [routerLinkActive]="'active'"
+          (click)="
+            changeOtherUser(
+              conversation.otherUser.username + '-' + conversation.c_id,
+              conversation.otherUser
+            )
+          "
+        >
+          <div class="col-md-2">
+            <div class="avatar-div">
+              <img
+                id="avatar-img"
+                src="{{ conversation.otherUser.photo_address }}"
+                alt="avatar mx-auto white"
+                class="img-fluid"
+              />
+            </div>
+          </div>
+          <div class="col-md-10" style="margin: auto;">
+            <div class="row">
+              <div
+                style="text-align: left; padding-top: 2px; padding-left: 35px;"
+                class="col-md-12"
+              >
+                <a
+                  ><span class="title">
+                    {{
+                      conversation.otherUser.first_name +
+                        " " +
+                        conversation.otherUser.last_name
+                    }}
+                  </span></a
+                >
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 message-body">
+                <span style="margin-left: 5px; padding-left: 10px;">
+                  {{ conversation.lastMessage.m_content }}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-1"></div>
+    </div>
+  </div>
+  <div class="col-md-7" style="background-color: #faffff;">
+    <!-- <app-message-detail></app-message-detail> -->
+    <!-- <router-outlet></router-outlet> -->
+    <div
+      [@routeAnimations]="
+        o && o.activatedRouteData && o.activatedRouteData['animation']
+      "
+    >
+      <router-outlet #o="outlet"></router-outlet>
+    </div>
+  </div>
+  <div class="col-md-1"></div>
+</div>

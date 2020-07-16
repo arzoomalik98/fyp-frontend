@@ -1,0 +1,172 @@
+<app-error-modal [message]="modalMessage"></app-error-modal>
+
+<app-create-team [currentProject]="currentProject"></app-create-team>
+
+<app-create-project-event
+  [currentProject]="currentProject"
+></app-create-project-event>
+
+<app-add-project-members
+  [currentProject]="currentProject"
+></app-add-project-members>
+
+<app-leave-project [currentProject]="currentProject"></app-leave-project>
+
+<app-show-project-members
+  [currentProject]="currentProject"
+></app-show-project-members>
+<!-- <app-show-completed-projects></app-show-completed-projects>
+<app-show-remaining-projects></app-show-remaining-projects>
+<app-show-teams></app-show-teams> -->
+<!-- <div class="row">
+  <div class="col-md-12">
+    <div id="chartdiv" style="height: 300px; width: 100%;"></div>
+  </div>
+</!-->
+
+<div class="container" style="min-height: 84.5vh; width: 100%;">
+  <div class="sectiontitle">
+    <h2>User actions</h2>
+    <span class="headerLine"></span>
+  </div>
+
+  <div id="projectFacts" class="sectionClass" style="padding-bottom: 5px;">
+    <div class="fullWidth eight columns">
+      <div class="projectFactsWrap" style="padding: 0px;">
+        <div
+          id="createProjectTeamButton"
+          class="item wow fadeInUpBig animated animated action-tab"
+          data-number="0"
+          (click)="openModal('createTeam')"
+        >
+          <i class="fas fa-folder-plus"></i>
+          <p>Create team</p>
+        </div>
+
+        <div
+          class="item wow fadeInUpBig animated animated action-tab"
+          data-number="0"
+          (click)="openModal('createProjectEvent')"
+        >
+          <i class="fa fa-calendar-plus"></i>
+          <p>Create event</p>
+        </div>
+        <div
+          id="addProjectMemberButton"
+          class="item wow fadeInUpBig animated animated action-tab"
+          data-number="0"
+          (click)="openModal('addProjectMembers')"
+        >
+          <i class="fa fa-user-plus"></i>
+          <p>Add members</p>
+        </div>
+
+        <div
+          class="item wow fadeInUpBig animated animated action-tab"
+          data-number="0"
+          (click)="openModal('leaveProject')"
+        >
+          <i class="fa fa-sign-out-alt"></i>
+          <p>Leave project</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sectiontitle">
+    <h2>Project statistics</h2>
+    <span class="headerLine"></span>
+  </div>
+  <div id="projectFacts" class="sectionClass" style="padding-bottom: 5px;">
+    <div class="fullWidth eight columns">
+      <div class="projectFactsWrap">
+        <div
+          class="item wow fadeInUpBig animated animated action-tab"
+          attr.data-number="{{ totalProjectMembers }}"
+          (click)="openModal('totalProjectMembers')"
+        >
+          <i class="fas fa-users"></i>
+          <p id="number1" class="number">{{ totalProjectMembers }}</p>
+          <span></span>
+          <p>Total members</p>
+        </div>
+
+        <div
+          class="item wow fadeInUpBig animated animated action-tab disabled action-tab-locked"
+          attr.data-number="{{ totalCompletedTasks }}"
+          (click)="projectsDone()"
+        >
+          <i class="fa fa-clipboard-check"></i>
+          <p id="number2" class="number">{{ totalCompletedTasks }}</p>
+          <span></span>
+          <p>Tasks completed</p>
+        </div>
+        <div
+          class="item wow fadeInUpBig animated animated action-tab disabled action-tab-locked"
+          attr.data-number="{{ totalRemainingTasks }}"
+          (click)="projectsLeft()"
+        >
+          <i class="fa fa-clipboard-list"></i>
+          <p id="number3" class="number">{{ totalRemainingTasks }}</p>
+          <span style="padding: 0px;"></span>
+          <p>Tasks remaining</p>
+        </div>
+
+        <div
+          class="item wow fadeInUpBig animated animated action-tab disabled action-tab-locked"
+          attr.data-number="{{ totalTeams }}"
+          (click)="viewTeams()"
+        >
+          <i class="fa fa-users-class"></i>
+          <p id="number4" class="number">{{ totalTeams }}</p>
+          <span></span>
+          <p>Total teams</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sectiontitle">
+    <h2>Teams progress</h2>
+    <span class="headerLine"></span>
+  </div>
+
+  <div class="row" *ngFor="let team of teams" style="padding-top: 5px;">
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-2" style="padding-left: 10px;">
+          <span style="font-family: sans-serif; font-size: 17px;">{{
+            team.tm_name
+          }}</span>
+        </div>
+        <div class="col-md-10">
+          <div class="progress md-progress" style="height: 20px; right: 10px;">
+            <div
+              class="progress-bar"
+              role="progressbar"
+              [ngStyle]="{ width: team.completed + '%' }"
+              style="
+                height: 20px;
+                background-color: #3aafa9;
+                font-family: sans-serif;
+              "
+              aria-valuenow="0"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            >
+              {{ team.completed + " %" }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12" style="height: 10px;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+       <div id="timeline" style="height: 180px;"></div>
+    -->
+</div>

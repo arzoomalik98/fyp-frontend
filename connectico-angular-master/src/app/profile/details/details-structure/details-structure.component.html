@@ -1,0 +1,44 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-8 box">
+        <div class="row box-heading">
+          <a style="margin-right: 5px; color: white;"
+            ><i class="fas fa-address-card"></i></a
+          >Details
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="row heading-column" (click)="changeSection($event)">
+              <a style="margin-right: 5px;"
+                ><i class="fas fa-question-circle"></i></a
+              >About
+            </div>
+            <div class="row heading-column" (click)="changeSection($event)">
+              <a style="margin-right: 5px;"><i class="fas fa-briefcase"></i></a
+              >Organization
+            </div>
+            <div class="row heading-column" (click)="changeSection($event)">
+              <a style="margin-right: 5px;"><i class="fas fa-cog"></i></a
+              >Settings
+            </div>
+          </div>
+          <div class="col-md-9" style="background-color: #feffff;">
+            <!-- inside details box -->
+            <app-details-about
+              *ngIf="currentSection === 'About'"
+            ></app-details-about>
+            <app-details-organization
+              *ngIf="currentSection === 'Organization'"
+            ></app-details-organization>
+            <app-details-settings
+              *ngIf="currentSection === 'Settings'"
+            ></app-details-settings>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+  </div>
+</div>

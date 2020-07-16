@@ -1,0 +1,14 @@
+.navbar {
+  background-color: #17252a !important;
+}
+
+.menu-option {
+  background-color: ##feffff !important;
+}
+
+.menu-option:hover {
+  background-color: #2b7a78 !important;
+}
+/* .active {
+  background-color: #2b7a78 !important;
+} */

@@ -1,0 +1,53 @@
+#avatar-img {
+  border-radius: 100px;
+}
+
+.view-button {
+  padding: 5px;
+  font-family: sans-serif;
+  font-size: 15px;
+  width: 100px;
+  height: 35px;
+  margin-left: 0px;
+  margin-right: 0px;
+  border: 1px solid #17252a;
+  font-family: sans-serif;
+  background-color: white;
+}
+
+.view-button:hover {
+  background-color: #17252a;
+  color: white;
+}
+
+.close-button {
+  padding: 5px;
+  font-family: sans-serif;
+  font-size: 15px;
+  width: 100px;
+  height: 35px;
+  margin-left: 0px;
+  margin-right: 0px;
+  background-color: #17252a;
+  border: 1px solid white;
+  color: white;
+  font-family: sans-serif;
+}
+
+.close-button:hover {
+  background-color: #17252a;
+  border: 1px solid #2b7a78;
+}
+/* 
+#centralModalSm {
+  overflow-y: initial;
+} */
+
+.modal-body {
+  height: 400px;
+  overflow-y: auto;
+}
+
+.member-tile:hover {
+  background-color: #def2f1;
+}

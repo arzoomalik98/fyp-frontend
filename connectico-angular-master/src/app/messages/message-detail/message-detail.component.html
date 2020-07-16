@@ -1,0 +1,174 @@
+<div style="min-height: 90vh; max-height: 90vh;">
+  <div class="row">
+    <div class="col-md-12 header">
+      <h3 style="font-family: sans-serif; padding: 5px; margin: auto;">
+        {{ otherUser.first_name + " " + otherUser.last_name }}
+      </h3>
+    </div>
+  </div>
+
+  <div
+    class="row"
+    style="
+      display: flex;
+      flex-direction: column-reverse;
+      position: relative;
+      min-height: 70vh;
+      max-height: 70vh;
+      overflow-y: auto;
+      overflow-x: hidden;
+    "
+  >
+    <div class="col-md-12" style="padding-right: 0px;">
+      <div class="row" *ngIf="messagesObject.totalMessages > 0">
+        <div
+          class="col-md-12"
+          *ngFor="let message of messagesObject.messagesHistory"
+        >
+          <div class="row receive-div" *ngIf="message['received'] === true">
+            <div class="col-md-12">
+              <div class="row">
+                <div
+                  class="col-md-12"
+                  style="
+                    text-align: center;
+                    margin-top: 0px;
+                    margin-bottom: 0px;
+                    padding: 0px;
+                  "
+                >
+                  {{ formatDate(message.datetime) }}
+                </div>
+              </div>
+              <div
+                class="row"
+                style="
+                  padding-left: 0px;
+                  padding-right: 0px;
+                  text-justify: auto;
+                  margin: 10px;
+                  margin-top: 5px;
+                  margin-right: 20px;
+                  margin-left: 0px;
+                "
+              >
+                <div
+                  class="col-md-1"
+                  style="padding-left: 0px; margin: 0 auto;"
+                >
+                  <div
+                    class="avatar-div"
+                    style="padding-right: 5px; margin-left: 0px;"
+                  >
+                    <img
+                      id="avatar-img"
+                      src="{{ otherUser.photo_address }}"
+                      alt="avatar mx-auto white"
+                      class="img-fluid"
+                    />
+                  </div>
+                </div>
+                <div
+                  class="col-md-11"
+                  style="
+                    background-color: rgb(241, 78, 111);
+                    padding-top: 10px;
+                    padding-bottom: 10px;
+                    border-radius: 15px;
+                    margin: auto;
+                  "
+                >
+                  {{ message.m_content }}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row sender-div" *ngIf="message['received'] === false">
+            <div class="col-md-12">
+              <div class="row">
+                <div
+                  class="col-md-12"
+                  style="
+                    text-align: center;
+                    margin-top: 0px;
+                    margin-bottom: 0px;
+                    padding: 0px;
+                  "
+                >
+                  {{ formatDate(message.datetime) }}
+                </div>
+              </div>
+
+              <div
+                class="row"
+                style="
+                  padding-left: 0px;
+                  padding-right: 0px;
+                  text-justify: auto;
+                  margin: 10px;
+                  margin-top: 5px;
+                  margin-right: 20px;
+                  margin-left: 0px;
+                "
+              >
+                <div
+                  class="col-md-11"
+                  style="
+                    background-color: #49d8d3;
+                    padding-top: 10px;
+                    padding-bottom: 10px;
+                    border-radius: 15px;
+                    text-align: right;
+                    margin: auto;
+                  "
+                >
+                  {{ message.m_content }}
+                </div>
+                <div class="col-md-1">
+                  <div class="avatar-div" style="padding-right: 0px;">
+                    <img
+                      id="avatar-img"
+                      src="{{ user.photo_address }}"
+                      class="img-fluid"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" style="position: absolute; width: 100%; bottom: 10px;">
+    <div class="col-md-12">
+      <form [formGroup]="messageForm" (ngSubmit)="sendMessage()">
+        <div class="row">
+          <div class="col-md-10">
+            <div class="form-group shadow-textarea">
+              <textarea
+                class="form-control z-depth-1"
+                id="messageContent"
+                rows="2"
+                style="resize: none;"
+                placeholder="Write a message..."
+                formControlName="message"
+              ></textarea>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <button
+              type="submit"
+              class="btn btn-primary"
+              style="right: 10px; background-color: #17252a !important;"
+            >
+              Send
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
